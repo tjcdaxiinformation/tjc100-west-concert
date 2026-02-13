@@ -1,0 +1,137 @@
+import React, { useState, useEffect } from 'react';
+import { Video, Heart, Share2, Lightbulb, ArrowRight, Cross, Sparkles, Globe } from 'lucide-react';
+
+const App = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  const missions = [
+    { 
+      icon: <Video className="w-6 h-6" />, 
+      title: "影像敘事", 
+      desc: "透過鏡頭捕捉感人瞬間，傳遞溫暖人心的見證。" 
+    },
+    { 
+      icon: <Share2 className="w-6 h-6" />, 
+      title: "數位宣教", 
+      desc: "經營社群媒體，讓愛與真理跨越國界與屏幕。" 
+    },
+    { 
+      icon: <Lightbulb className="w-6 h-6" />, 
+      title: "視覺設計", 
+      desc: "運用美學恩賜，將神的話語轉化為觸動心靈的圖像。" 
+    },
+    { 
+      icon: <Globe className="w-6 h-6" />, 
+      title: "技術支援", 
+      desc: "架設數位平台，為福音的傳播築起穩固的基石。" 
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#050b1a] text-white font-sans overflow-x-hidden selection:bg-amber-500/30">
+      {/* 背景光束與星塵 */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-20%] left-[20%] w-[60%] h-[60%] bg-blue-500/10 blur-[150px] rounded-full"></div>
+        <div className="absolute bottom-[0%] right-[10%] w-[50%] h-[50%] bg-amber-500/10 blur-[150px] rounded-full"></div>
+        {/* 微光閃爍效果 */}
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '50px 50px' }}></div>
+      </div>
+
+      <div className="relative max-w-5xl mx-auto px-6 py-16 md:py-24 flex flex-col items-center">
+        
+        {/* 十字架微標 */}
+        <div className={`mb-8 transition-all duration-1000 transform ${isVisible ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}`}>
+          <div className="p-3 rounded-full bg-gradient-to-t from-amber-600 to-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.4)]">
+            <Cross className="w-8 h-8 text-white" />
+          </div>
+        </div>
+
+        {/* 標題區域 */}
+        <header className="text-center mb-16">
+          <div className={`inline-block mb-4 transition-all duration-700 delay-300 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+            <span className="text-amber-400 font-medium tracking-[0.2em] uppercase text-sm md:text-base border-b border-amber-400/30 pb-1">
+              以賽亞書 6:8 ｜ Isaiah 6:8
+            </span>
+          </div>
+          
+          <h2 className={`text-2xl md:text-3xl font-light mb-6 text-blue-200 transition-all duration-700 delay-500 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+            若主問你在哪裡？
+          </h2>
+          
+          <h1 className={`text-4xl md:text-6xl font-bold mb-8 leading-tight transition-all duration-700 delay-700 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+            你願意說：<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-white to-amber-200">「我在這裡，請差遣我」</span>
+          </h1>
+          
+          <p className={`text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed transition-all duration-700 delay-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+            我們正在尋找願意運用多媒體才華，將最好的恩賜獻給神的夥伴。<br className="hidden md:block" />
+            這不僅是一份工作，更是一場傳遞永恆價值的使命。
+          </p>
+        </header>
+
+        {/* 使命崗位展示 */}
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl transition-all duration-1000 delay-1200 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          {missions.map((item, index) => (
+            <div 
+              key={index}
+              className="group relative p-8 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-amber-500/50 hover:bg-white/[0.07] transition-all duration-500 backdrop-blur-md overflow-hidden"
+            >
+              {/* 卡片裝飾背光 */}
+              <div className="absolute -top-10 -right-10 w-32 h-32 bg-amber-500/5 blur-3xl group-hover:bg-amber-500/10 transition-colors"></div>
+              
+              <div className="flex flex-col gap-4">
+                <div className="w-12 h-12 flex items-center justify-center rounded-2xl bg-amber-500/10 text-amber-400 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">
+                  {item.icon}
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-amber-200 transition-colors">{item.title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* 回應呼召區 */}
+        <div className={`mt-16 text-center transition-all duration-1000 delay-1500 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <button className="group relative px-12 py-5 bg-transparent overflow-hidden rounded-full border border-amber-400/50 hover:border-amber-400 transition-all duration-300">
+            <div className="absolute inset-0 bg-amber-400 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+            <span className="relative flex items-center gap-3 text-amber-400 group-hover:text-[#050b1a] font-bold text-lg tracking-widest transition-colors">
+              回應呼召 ｜ APPLY NOW <ArrowRight className="w-5 h-5" />
+            </span>
+          </button>
+          
+          <div className="mt-8 flex items-center justify-center gap-2 text-slate-500">
+            <Sparkles className="w-4 h-4 text-amber-500/50" />
+            <p className="text-sm">凡有耳的，就應當聽</p>
+            <Sparkles className="w-4 h-4 text-amber-500/50" />
+          </div>
+        </div>
+
+        {/* 底部資訊 */}
+        <footer className="mt-24 pt-12 border-t border-white/10 w-full text-center">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 max-w-4xl mx-auto px-4">
+            <div className="text-left">
+              <p className="text-amber-200 font-bold text-lg">榮美使命媒體中心</p>
+              <p className="text-slate-500 text-sm mt-1">用創意點亮世界，用生命見證真理</p>
+            </div>
+            <div className="flex gap-8 text-slate-400 text-sm font-medium">
+              <a href="#" className="hover:text-amber-400 transition-colors underline underline-offset-4 decoration-amber-400/30">了解更多</a>
+              <a href="#" className="hover:text-amber-400 transition-colors underline underline-offset-4 decoration-amber-400/30">異象說明</a>
+              <a href="#" className="hover:text-amber-400 transition-colors underline underline-offset-4 decoration-amber-400/30">聯絡我們</a>
+            </div>
+          </div>
+          <p className="mt-12 text-slate-600 text-xs tracking-widest uppercase">
+            © 2024 Kingdom Media Mission. All Rights Reserved.
+          </p>
+        </footer>
+      </div>
+    </div>
+  );
+};
+
+export default App;
